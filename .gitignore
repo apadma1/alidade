@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+
+# C++ / CMake
+build/
+cmake-build-*/
+CMakeCache.txt
+CMakeFiles/
+compile_commands.json
+*.o
+*.a
+*.so
+
+# Astro data (too large; store outside git)
+*.fits
+*.fit
+*.fts
+*.xisf
+*.ser
+captures/
+stacks/
+astap_db/
+
+# Models and voice assets
+models/
+*.onnx
+*.tflite
+*.bin
+
+# Secrets and local config
+.env
+.env.*
+*.pem
+secrets/
+config.local.*
+
+# Logs / editor / OS
+*.log
+sessions/
+.vscode/
+.idea/
+.DS_Store
+.obsidian/
