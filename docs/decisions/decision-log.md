@@ -89,3 +89,9 @@ Format: **ID · date · title.** Context → options → decision → consequenc
 - **Consequences:** all vault notes, service names (`alidade-*`), hostname (`alidade.local`) and tags (`alidade`) updated. Pitch line: *"An alidade is how astronomers lined their eye up with the stars. We do that with data."*
 - **Still to do:** USPTO search (classes 9 and 42), domain, GitHub org, social handles, update the YC application text.
 - **Owner:** Anish · **Status:** accepted pending trademark check
+
+### D-016 · 2026-11-04 · Repository layout and what goes in it
+- **Context:** an external review proposed a full repo tree with empty source files, CI workflows, and a GPL-3.0 LICENSE.
+- **Decision:** add files only when they contain real content. Docs (architecture, safety, BOM) go in now. Source folders, `pyproject.toml`, CMake, and CI arrive with the first working code. Python code will live in `src/alidade/` so imports work. No LICENSE until D-011 is decided.
+- **Reason:** the repo is public and read by YC/Paxel; empty files would overstate progress. Choosing GPL inside a file layout would skip D-011.
+- **Owner:** Anish · **Status:** accepted
