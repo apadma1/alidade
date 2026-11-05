@@ -1,35 +1,47 @@
 # Python
 __pycache__/
 *.py[cod]
+*$py.class
 .venv/
 venv/
+env/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
 *.egg-info/
+.eggs/
 dist/
 
 # C++ / CMake
 build/
+bin/
 cmake-build-*/
 CMakeCache.txt
 CMakeFiles/
+cmake_install.cmake
 compile_commands.json
 *.o
 *.a
 *.so
+*.out
 
-# Astro data (too large; store outside git)
+# Astro data (too large; keep outside git)
 *.fits
 *.fit
 *.fts
 *.xisf
 *.ser
+data/
 captures/
 stacks/
+scratch/
 astap_db/
 
-# Models and voice assets
+# Session logs from real nights (may contain location data)
+sessions/
+*.jsonl
+
+# Voice / ML model weights
 models/
 *.onnx
 *.tflite
@@ -42,10 +54,13 @@ models/
 secrets/
 config.local.*
 
-# Logs / editor / OS
+# Editors / OS / notes
 *.log
-sessions/
+*.swp
 .vscode/
 .idea/
 .DS_Store
 .obsidian/
+
+# Note: PNG/JPG are NOT ignored. Docs images and HUD assets must be
+# tracked so the night-mode (red-only) asset check can run on them.
