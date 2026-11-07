@@ -17,10 +17,15 @@ Raspberry Pi 5 (8 GB, NVMe, Raspberry Pi OS 64-bit)
   alidade-voice    wake word → offline speech-to-text → command; Claude API only when online
   alidade-hud      draws the red display (C++, OpenGL ES 3.1, KMS/DRM, no desktop)
   alidade-web      audience view for a TV/browser + settings page
-        │ micro-HDMI → powered HDMI→USB-C (DP Alt) adapter
+        │ micro-HDMI → VITURE HDMI to USB-C cable (video out)
+        │ cable's USB-A plug → Pi USB (sensor data in, 5 V/1 A power out)
         ▼
-Viture Beast / XREAL One Pro glasses  (IMU head orientation comes back over USB)
+VITURE glasses: refurbished Pro for v0, Beast for v1 (D-019 pending)
 ```
+
+Head orientation is read with XRLinuxDriver (GPL-3.0, wraps VITURE's closed-source library; pin the tested version and turn its usage statistics off). Generic HDMI→USB-C adapters carry video only, so they can't do head tracking. XREAL's sensor path to a Pi is unproven.
+
+Power: the glasses draw from the Pi's USB port. A generic 12 V→5 V converter doesn't do the USB-PD handshake, so the Pi limits USB to 600 mA unless `usb_max_current_enable=1` is set (only with a converter that truly delivers 5 A) or a powered USB hub is used. Boot from NVMe.
 
 ## How a command flows
 
@@ -61,7 +66,7 @@ Faults (`GUIDE_LOST`, `SOLVE_FAIL`, `CLOUDS`, `DEVICE_DISCONNECT`) each get a HU
 
 ## Display
 
-- 1920×1080 @ 60 Hz to the glasses.
+- 1920×1080 @ 60 Hz to the glasses (the Beast panel is 1920×1200).
 - Two layers: **head-locked** (status panel, alerts, stack thumbnail) and **sky-locked** (labels on stars and objects, placed using the glasses IMU + location + time + a one-star calibration).
 - Sky labels need only rotation tracking (3DoF), because stars are effectively infinitely far away.
 - Night mode: everything is rendered red only. No green or blue pixels, ever.
@@ -80,7 +85,9 @@ Faults (`GUIDE_LOST`, `SOLVE_FAIL`, `CLOUDS`, `DEVICE_DISCONNECT`) each get a HU
 
 ## Open questions blocking the design
 
-- E-01: do the glasses show video from the Pi through the adapter?
-- E-02: can the Pi read the glasses' IMU, and how much does it drift?
-- D-010: Siril vs. OpenLiveStacker. D-011: license.
+- E-01: do the glasses show video from the Pi through the VITURE cable?
+- E-02: do the glasses show up in `lsusb`, and how much does the orientation drift?
+- Cold: no glasses maker publishes behavior below 0 °C; Indiana winter nights go lower.
+- D-010: Siril vs. OpenLiveStacker. D-011: license. D-019: v0 glasses.
+- Hardware is on hold (D-018); everything above E-01 is built and tested on a laptop with simulators first.
 - `alidade-web` on port 80 needs extra Linux permissions; may use :8080 instead.

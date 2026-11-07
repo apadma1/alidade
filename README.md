@@ -1,16 +1,21 @@
 # Alidade
 
-A scope-side Raspberry Pi 5 box that runs a telescope over INDI / ASCOM Alpaca, plate-solves and live-stacks locally, and drives a red-on-black HUD in tethered micro-OLED glasses (Viture Beast / XREAL One Pro). You control it by voice. Core control works with no internet.
+A scope-side Raspberry Pi 5 box that runs a telescope over INDI / ASCOM Alpaca, plate-solves and live-stacks locally, and drives a red-on-black HUD in tethered micro-OLED glasses (VITURE; model choice pending, see D-019). You control it by voice. Core control works with no internet.
 
 ## Status
 
-**Pre-prototype.** No working code yet. This repo starts the public build log for the Phase 0 spike (Nov 2026):
+**Pre-prototype.** No working code yet. No hardware bought (D-018), so Phase 0 is split in two:
 
-- [ ] E-01: Pi 5 micro-HDMI → powered HDMI→USB-C (DP Alt) adapter → glasses shows an image
-- [ ] E-02: Read the glasses IMU over USB HID on the Pi; measure drift over 10 min
-- [ ] INDI telescope + CCD simulators running on the Pi
+**Phase 0a (laptop + simulators):**
+- [ ] INDI telescope + CCD simulators and Alpaca OmniSim running
+- [ ] `alidade-guard` with the 50-case unsafe-command test suite
 - [ ] Offline grammar for 5 intents ("go to M51", "abort", ...)
-- [ ] 60 s uncut clip: "go to M51" → simulated mount slews → HUD updates
+- [ ] "Go to M51" → guard → simulated slew → solve → red HUD on a normal monitor, voice p95 latency measured
+
+**Phase 0b (needs hardware):**
+- [ ] E-01: Pi 5 → VITURE HDMI to USB-C cable → glasses shows an image
+- [ ] E-02: glasses show up in `lsusb`; orientation data streams on the Pi; drift measured over 10 min
+- [ ] The 0a loop shown in the glasses
 
 Progress is logged in [`CHANGELOG.md`](CHANGELOG.md) and [`docs/devlog/`](docs/devlog/). Design: [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md), safety rules: [`docs/SAFETY.md`](docs/SAFETY.md), hardware: [`docs/BOM.md`](docs/BOM.md), decisions: [`docs/decisions/`](docs/decisions/).
 

@@ -95,3 +95,41 @@ Format: **ID · date · title.** Context → options → decision → consequenc
 - **Decision:** add files only when they contain real content. Docs (architecture, safety, BOM) go in now. Source folders, `pyproject.toml`, CMake, and CI arrive with the first working code. Python code will live in `src/alidade/` so imports work. No LICENSE until D-011 is decided.
 - **Reason:** the repo is public and read by YC/Paxel; empty files would overstate progress. Choosing GPL inside a file layout would skip D-011.
 - **Owner:** Anish · **Status:** accepted
+
+### D-017 · 2026-11-06 · Shutdowns live in the vault Daily Note, not in a chat
+- **Context:** we needed to decide whether end-of-day reflection ("shutdown") happens in the HQ chat or a separate chat.
+- **Options:** (a) shutdown in the HQ chat every day; (b) a separate "Shutdown" chat; (c) a 5-minute Daily Note in the vault, with chats only receiving summaries.
+- **Decision:** (c).
+- **Reasons:**
+  - The vault is the single source of truth (00_README rule 1). A chat isn't searchable or linkable from Obsidian.
+  - A daily chat message adds friction on tired nights. A 5-line note gets done; a conversation gets skipped.
+  - Long chats get slow and lose early context. Daily shutdowns would fill HQ with noise.
+- **How it works:**
+  1. Each Build or work session ends with the HANDOFF block (P-04). Paste it into today's Daily Note.
+  2. Daily Note fields: Done / Blocked / Next / Hours (+ handoff if any).
+  3. Post in HQ the same day **only** if the calendar needs to change (a slipped block, a booked interview, a new blocker).
+  4. Every Sunday's weekly review pastes the week's Daily Notes into HQ, and HQ rebuilds the next 2 weeks of the calendar.
+- **Owner:** Anish · **Status:** accepted
+
+### D-018 · 2026-11-06 · Hardware purchases on hold; laptop + simulators first, borrow before buying
+- **Context:** no personal budget for hardware right now. AI credits can't buy parts.
+- **Decision:**
+  1. Buy nothing for now.
+  2. Build Phase 0 software on a laptop against INDI simulators and ASCOM Alpaca OmniSim.
+  3. Research a cost-ranked shortlist (P-01) so buying takes a day when money is available.
+  4. Ask Purdue Hackers, the Bechtel Innovation Design Center, ECE/AAE labs, and the Astronomy Club to lend a Pi 5 and accessories.
+- **Consequences:**
+  - E-01 (glasses display path) and E-02 (glasses IMU) can't run until glasses are available. The display path stays the top technical risk.
+  - The Dec 6 Phase 0 gate splits in two. **0a:** voice → guard → simulated slew → solve → red HUD on a normal monitor, with voice p95 measured. **0b:** the same loop shown in the glasses, once hardware exists.
+  - The YC progress log reports 0a honestly and doesn't imply glasses testing has happened.
+- **Revisit when:** money is available, a lender is found, or a YC decision arrives (Dec 11).
+- **Owner:** Anish ([COO] lens) · **Status:** accepted
+
+### D-019 · Pending · v0 glasses and display path: staged VITURE vs. Beast-first
+- **Context:** 19_Hardware_Shortlist found that VITURE is the only brand with a documented video-plus-sensor path to a Pi (the $29 VITURE cable + XRLinuxDriver). XREAL's sensor path to a Pi is unproven; RayNeo can't track on ARM.
+- **Options:** (A) refurbished VITURE Pro now (~$623 total v0), Beast after funding; (C) Beast straight away (~$993, almost no margin); (B) XREAL path; (D) RayNeo display-only.
+- **Recommendation from research:** (A). Scores 3.98 vs. 3.39 for (C).
+- **Still blocked by D-018:** nothing is bought until money or a lender appears. Run bench tests 2–3 first on any borrowed VITURE unit.
+- **Also affects:** the Project instructions and 05 name "Viture Beast / XREAL One Pro" as equal options. Update them if (A) is accepted.
+- **Owner:** Anish ([CTO] / [COO] lens) · **Status:** pending
+
